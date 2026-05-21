@@ -97,11 +97,12 @@ def fetch_from_original_api(bin_code, stk):
             'Accept': 'application/json, text/plain, */*',
             'Accept-Language': 'vi-VN,vi;q=0.9',
             'Referer': 'https://mb.acb1s.workers.dev/',
+            'Origin': 'https://mb.acb1s.workers.dev',
         }
-        response = requests.get(url, headers=headers, timeout=10, verify=False)
+        response = requests.get(url, headers=headers, timeout=15, verify=False)
         return response.json()
     except Exception as e:
-        print(f"Error calling original API: {e}")
+        print(f"Error: {e}")
         return None
 
 class handler(BaseHTTPRequestHandler):
@@ -109,7 +110,7 @@ class handler(BaseHTTPRequestHandler):
         parsed = urlparse(self.path)
         path = parsed.path
         
-        # Nếu là request HTML hoặc ảnh - trả về 404 để Vercel xử lý route khác
+        # Nếu là request HTML hoặc ảnh - trả về 404 để Vercel xử lý
         if path.startswith("/v3/") or path.startswith("/app_v2/"):
             self.send_response(404)
             self.end_headers()
@@ -138,7 +139,6 @@ class handler(BaseHTTPRequestHandler):
         # Gọi API gốc
         result = fetch_from_original_api(bank, stk)
         
-        # Nếu thành công, thêm logo URL
         if result and result.get("success"):
             data = result.get("data", {})
             if data:
@@ -171,10 +171,5 @@ class handler(BaseHTTPRequestHandler):
 
 if __name__ == "__main__":
     port = 8080
-    print("=" * 60)
-    print(f"🚀 SERVER ĐANG CHẠY TẠI: http://localhost:{port}")
-    print("=" * 60)
-    print(f"📡 API JSON: http://localhost:{port}/?bank=970422&stk=1611")
-    print("=" * 60)
-    print("⚠️  Nhấn Ctrl+C để dừng server\n")
+    print(f"Server at http://localhost:{port}")
     HTTPServer(("0.0.0.0", port), handler).serve_forever()
