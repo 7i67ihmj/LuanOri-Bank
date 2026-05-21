@@ -1,14 +1,6 @@
 {
   "routes": [
     {
-      "src": "/v3/docs/payment/api/result-handling/bankcode/",
-      "dest": "/public/v3/docs/payment/api/result-handling/bankcode/index.html"
-    },
-    {
-      "src": "/v3/docs/payment/api/result-handling/bankcode",
-      "dest": "/public/v3/docs/payment/api/result-handling/bankcode/index.html"
-    },
-    {
       "src": "/api/(.*)",
       "dest": "/api/index.py"
     },
