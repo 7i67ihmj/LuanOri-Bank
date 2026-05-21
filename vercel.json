@@ -1,0 +1,45 @@
+{
+  "functions": {
+    "api/index.py": {
+      "runtime": "@vercel/python@3.9",
+      "maxDuration": 10
+    }
+  },
+  "routes": [
+    {
+      "src": "/v3/docs/payment/api/result-handling/bankcode/",
+      "dest": "/v3/docs/payment/api/result-handling/bankcode/index.html"
+    },
+    {
+      "src": "/v3/docs/payment/api/result-handling/bankcode",
+      "dest": "/v3/docs/payment/api/result-handling/bankcode/index.html"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.py"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "X-Requested-With, Content-Type, Authorization"
+        }
+      ]
+    }
+  ]
+}
