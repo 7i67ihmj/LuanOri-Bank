@@ -1,12 +1,12 @@
 {
   "routes": [
     {
-      "src": "/v3/(.*)",
-      "dest": "/public/v3/$1"
+      "src": "/v3/docs/payment/api/result-handling/bankcode/",
+      "dest": "/public/v3/docs/payment/api/result-handling/bankcode/index.html"
     },
     {
-      "src": "/app_v2/img/(.*)",
-      "dest": "/app_v2/img/$1"
+      "src": "/v3/docs/payment/api/result-handling/bankcode",
+      "dest": "/public/v3/docs/payment/api/result-handling/bankcode/index.html"
     },
     {
       "src": "/api/(.*)",
