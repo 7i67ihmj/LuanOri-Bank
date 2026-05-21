@@ -2,15 +2,12 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 import json
 import requests
-import ssl
-import os
-
-# Bỏ qua cảnh báo SSL
 import urllib3
+
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 CREDIT_TEXT = "LuanOri"
-CREDIT_URL = "https://luanoribank.vercel.app/"
+CREDIT_URL = "https://github.com/luanori"
 
 # Logo URLs
 BANK_LOGOS = {
@@ -107,36 +104,16 @@ def fetch_from_original_api(bin_code, stk):
         print(f"Error calling original API: {e}")
         return None
 
-def read_html_file():
-    """Đọc file HTML từ đường dẫn tương ứng"""
-    html_path = "./v3/docs/payment/api/result-handling/bankcode/index.html"
-    try:
-        with open(html_path, 'r', encoding='utf-8') as f:
-            return f.read()
-    except FileNotFoundError:
-        print(f"Không tìm thấy file: {html_path}")
-        return None
-
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         parsed = urlparse(self.path)
         path = parsed.path
         
-        # Nếu request đến đường dẫn HTML
-        if path == "/v3/docs/payment/api/result-handling/bankcode/" or path == "/v3/docs/payment/api/result-handling/bankcode":
-            html_content = read_html_file()
-            if html_content:
-                self.send_response(200)
-                self.send_header("Content-type", "text/html; charset=utf-8")
-                self.end_headers()
-                self.wfile.write(html_content.encode())
-                return
-            else:
-                self.send_response(404)
-                self.send_header("Content-type", "text/plain")
-                self.end_headers()
-                self.wfile.write(b"404 - HTML file not found")
-                return
+        # Nếu là request HTML hoặc ảnh - trả về 404 để Vercel xử lý route khác
+        if path.startswith("/v3/") or path.startswith("/app_v2/"):
+            self.send_response(404)
+            self.end_headers()
+            return
         
         # Xử lý API
         params = parse_qs(parsed.query)
@@ -198,7 +175,6 @@ if __name__ == "__main__":
     print(f"🚀 SERVER ĐANG CHẠY TẠI: http://localhost:{port}")
     print("=" * 60)
     print(f"📡 API JSON: http://localhost:{port}/?bank=970422&stk=1611")
-    print(f"🌐 HTML: http://localhost:{port}/v3/docs/payment/api/result-handling/bankcode/")
     print("=" * 60)
     print("⚠️  Nhấn Ctrl+C để dừng server\n")
     HTTPServer(("0.0.0.0", port), handler).serve_forever()
