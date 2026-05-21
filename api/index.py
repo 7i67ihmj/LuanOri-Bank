@@ -1,13 +1,16 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 import json
-import urllib.request
-import urllib.error
+import requests
 import ssl
 import os
 
+# Bỏ qua cảnh báo SSL
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
 CREDIT_TEXT = "LuanOri"
-CREDIT_URL = "https://github.com/luanori"
+CREDIT_URL = "https://luanoribank.vercel.app/"
 
 # Logo URLs
 BANK_LOGOS = {
@@ -91,15 +94,15 @@ BANK_LOGOS = {
 def fetch_from_original_api(bin_code, stk):
     """Gọi API gốc mb.acb1s.workers.dev"""
     try:
-        ssl_context = ssl.create_default_context()
-        ssl_context.check_hostname = False
-        ssl_context.verify_mode = ssl.CERT_NONE
-        
         url = f"https://mb.acb1s.workers.dev/?bank={bin_code}&stk={stk}"
-        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        
-        with urllib.request.urlopen(req, timeout=10, context=ssl_context) as response:
-            return json.loads(response.read().decode())
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'application/json, text/plain, */*',
+            'Accept-Language': 'vi-VN,vi;q=0.9',
+            'Referer': 'https://mb.acb1s.workers.dev/',
+        }
+        response = requests.get(url, headers=headers, timeout=10, verify=False)
+        return response.json()
     except Exception as e:
         print(f"Error calling original API: {e}")
         return None
@@ -132,7 +135,7 @@ class handler(BaseHTTPRequestHandler):
                 self.send_response(404)
                 self.send_header("Content-type", "text/plain")
                 self.end_headers()
-                self.wfile.write(b"404 - HTML file not found at: v3/docs/payment/api/result-handling/bankcode/index.html")
+                self.wfile.write(b"404 - HTML file not found")
                 return
         
         # Xử lý API
@@ -155,9 +158,10 @@ class handler(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps(response, ensure_ascii=False).encode())
             return
         
-        # Thử gọi API gốc
+        # Gọi API gốc
         result = fetch_from_original_api(bank, stk)
         
+        # Nếu thành công, thêm logo URL
         if result and result.get("success"):
             data = result.get("data", {})
             if data:
@@ -194,7 +198,7 @@ if __name__ == "__main__":
     print(f"🚀 SERVER ĐANG CHẠY TẠI: http://localhost:{port}")
     print("=" * 60)
     print(f"📡 API JSON: http://localhost:{port}/?bank=970422&stk=1611")
-    print(f"🌐 HTML Danh sách ngân hàng: http://localhost:{port}/v3/docs/payment/api/result-handling/bankcode/")
+    print(f"🌐 HTML: http://localhost:{port}/v3/docs/payment/api/result-handling/bankcode/")
     print("=" * 60)
     print("⚠️  Nhấn Ctrl+C để dừng server\n")
     HTTPServer(("0.0.0.0", port), handler).serve_forever()
