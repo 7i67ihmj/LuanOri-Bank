@@ -1,17 +1,12 @@
 {
-  "functions": {
-    "api/index.py": {
-      "runtime": "python3.9"
-    }
-  },
   "routes": [
     {
       "src": "/v3/(.*)",
       "dest": "/public/v3/$1"
     },
     {
-      "src": "/app_v2/(.*)",
-      "dest": "/app_v2/$1"
+      "src": "/app_v2/img/(.*)",
+      "dest": "/app_v2/img/$1"
     },
     {
       "src": "/(.*)",
