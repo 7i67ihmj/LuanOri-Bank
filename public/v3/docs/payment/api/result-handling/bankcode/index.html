@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Bank Codes List | LuanOri</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #fff;
+            color: #1a1a2e;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Header */
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            border-bottom: 3px solid #6c5ce7;
+            display: inline-block;
+            padding-bottom: 8px;
+            color: #1e293b;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 32px 0 20px;
+            color: #2d3436;
+        }
+
+        /* Credit box */
+        .credit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 14px 20px;
+            border-radius: 12px;
+            margin: 24px 0;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .credit a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .credit a:hover {
+            text-decoration: underline;
+        }
+
+        /* Table wrapper - responsive */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            min-width: 800px;
+        }
+
+        th {
+            background: #f8f9fc;
+            padding: 14px 12px;
+            text-align: left;
+            font-weight: 700;
+            color: #1e293b;
+            border-bottom: 2px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eef2f6;
+            vertical-align: middle;
+        }
+
+        tr:hover {
+            background: #fefce8;
+            transition: background 0.2s;
+        }
+
+        /* Logo */
+        .bank-logo {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            background: #f1f5f9;
+            border-radius: 10px;
+            padding: 4px;
+            display: block;
+        }
+
+        /* Bank code style */
+        .bank-code {
+            font-family: 'Courier New', 'SF Mono', monospace;
+            font-weight: 700;
+            color: #6c5ce7;
+            background: #f3f4f6;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        /* Bin card style */
+        .bin-card {
+            font-family: 'Courier New', 'SF Mono', monospace;
+            background: #eef2ff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            color: #1e40af;
+        }
+
+        /* Badge styles */
+        .badge-yes {
+            background: #dcfce7;
+            color: #166534;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .badge-no {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Note box */
+        .note {
+            background: #fef9e3;
+            border-left: 4px solid #f59e0b;
+            padding: 16px 20px;
+            margin: 24px 0;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #78350f;
+        }
+        .note code {
+            background: #fffbeb;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #94a3b8;
+            font-size: 12px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* ========== CSS MOBILE ========== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px 12px;
+            }
+            h1 {
+                font-size: 22px;
+                border-bottom-width: 2px;
+            }
+            h2 {
+                font-size: 18px;
+                margin: 20px 0 12px;
+            }
+            .credit {
+                padding: 10px 14px;
+                font-size: 12px;
+            }
+            th {
+                padding: 10px 8px;
+                font-size: 11px;
+            }
+            td {
+                padding: 8px 6px;
+                font-size: 11px;
+            }
+            .bank-logo {
+                width: 28px;
+                height: 28px;
+            }
+            .bank-code {
+                font-size: 10px;
+                padding: 2px 6px;
+            }
+            .bin-card {
+                font-size: 9px;
+                padding: 2px 6px;
+            }
+            .badge-yes, .badge-no {
+                font-size: 9px;
+                padding: 2px 8px;
+            }
+            .note {
+                font-size: 11px;
+                padding: 12px 14px;
+            }
+            .note code {
+                font-size: 10px;
+            }
+            .footer {
+                font-size: 10px;
+                margin-top: 24px;
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 12px 8px;
+            }
+            th, td {
+                padding: 6px 4px;
+                font-size: 10px;
+            }
+            .bank-logo {
+                width: 22px;
+                height: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🏦 Bank Codes List</h1>
+    
+    <!-- <div class="credit">
+        ✨ <strong>Credits: LuanOri</strong> — Dữ liệu từ MoMo Developers API<br>
+        🔗 GitHub: <a href="https://github.com/luanori" target="_blank">https://github.com/luanori</a>
+    </div> -->
+
+    <h4>📋 BANK NAME AND BANK CODE MAPPING LIST</h4*>
+    
+    <div class="table-wrapper">
+        <table id="bankTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Logo</th>
+                    <th>Bank Code</th>
+                    <th>Bank Name</th>
+                    <th>Bin Card</th>
+                    <th>Disburse</th>
+                    <th>Domestic ATM</th>
+                </tr>
+            </thead>
+            <tbody id="bankTableBody">
+                <!-- JavaScript sẽ đổ dữ liệu vào đây -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="note">
+        💡 <strong>Note:</strong> Dữ liệu được lấy từ MoMo Developers (Bank Name and Bank Code mapping list).<br>
+        🔗 API Bin Card: <code>/api?bank={BIN}&stk={STK}</code> — Ví dụ: <code>/api?bank=970422&stk=5506555555</code>
+    </div>
+
+    <div class="footer">
+        © 2025 LuanOri — Dữ liệu cập nhật theo MoMo Developers
+    </div>
+</div>
+
+<script>
+    // Dữ liệu từ bảng mapping của MoMo (đầy đủ 76 dòng)
+    const banks = [
+        {stt:1, code:"VCB", name:"Ngân hàng TMCP Ngoại Thương Việt Nam", bin:"970436", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/VCB.png"},
+        {stt:2, code:"CTG", name:"Ngân hàng TMCP Công thương Việt Nam", bin:"970415", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/CTG.png"},
+        {stt:3, code:"TCB", name:"Ngân hàng TMCP Kỹ thương Việt Nam", bin:"970407", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/TCB.png"},
+        {stt:4, code:"BIDV", name:"Ngân hàng TMCP Đầu tư và Phát triển Việt Nam", bin:"970418", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/BIDV.png"},
+        {stt:5, code:"VARB", name:"Ngân hàng Nông nghiệp và Phát triển Nông thôn Việt Nam", bin:"970405", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/VARB.png"},
+        {stt:6, code:"NVB", name:"Ngân hàng Thương Mại Cổ Phần Quốc Dân", bin:"970419", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/NVB.png"},
+        {stt:7, code:"STB", name:"Ngân hàng TMCP Sài Gòn Thương Tín", bin:"970403", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/STB.png"},
+        {stt:8, code:"ACB", name:"Ngân hàng TMCP Á Châu", bin:"970416", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/ACB.png"},
+        {stt:9, code:"MB", name:"Ngân hàng TMCP Quân đội", bin:"970422", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/MB.png"},
+        {stt:10, code:"TPB", name:"Ngân hàng TMCP Tiên Phong", bin:"970423", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/TPB.png"},
+        {stt:11, code:"SVB", name:"Ngân hàng TNHH MTV Shinhan Việt Nam", bin:"970424", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/SVB.png"},
+        {stt:12, code:"VIB", name:"Ngân hàng TMCP Quốc tế Việt Nam", bin:"970441", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/VIB.png"},
+        {stt:13, code:"VPB", name:"Ngân hàng TMCP Việt Nam Thịnh Vượng", bin:"970432", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/VPB.png"},
+        {stt:14, code:"SHB", name:"Ngân hàng TMCP Sài Gòn - Hà Nội", bin:"970443", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/SHB.png"},
+        {stt:15, code:"EIB", name:"Ngân hàng TMCP Xuất Nhập khẩu Việt Nam", bin:"970431", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/EIB.png"},
+        {stt:16, code:"BVB", name:"Ngân hàng TMCP Bảo Việt", bin:"970438", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/BVB.png"},
+        {stt:17, code:"VCCB", name:"Ngân hàng TMCP Bản Việt", bin:"970454", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/VCCB.png"},
+        {stt:18, code:"SCB", name:"Ngân hàng TMCP Sài Gòn", bin:"970429", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/SCB.png"},
+        {stt:19, code:"VRB", name:"Ngân hàng Liên doanh Việt - Nga", bin:"970421", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/VRB.png"},
+        {stt:20, code:"ABB", name:"Ngân hàng TMCP An Bình", bin:"970425", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/ABB.png"},
+        {stt:21, code:"PVCB", name:"Ngân hàng TMCP Đại Chúng Việt Nam", bin:"970412", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/PVCB.png"},
+        {stt:22, code:"MBV", name:"Ngân hàng TNHH MTV Việt Nam Hiện Đại", bin:"970414", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/MBV.png"},
+        {stt:23, code:"NAB", name:"Ngân hàng TMCP Nam Á", bin:"970428", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/NAB.png"},
+        {stt:24, code:"HDB", name:"Ngân hàng TMCP Phát triển Thành phố Hồ Chí Minh", bin:"970437", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/HDB.png"},
+        {stt:25, code:"HDB", name:"Ngân hàng TMCP Phát triển Thành phố Hồ Chí Minh", bin:"970420", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/HDB.png"},
+        {stt:26, code:"VB", name:"Ngân hàng TMCP Việt Nam Thương Tín", bin:"970433", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/VB.png"},
+        {stt:27, code:"CFC", name:"Công ty Tài chính Cổ Phần Tín Việt", bin:"970460", disburse:false, napas:false, logo:"https://luanoribank.vercel.app/app_v2/img/CFC.png"},
+        {stt:28, code:"PBVN", name:"Ngân hàng TNHH MTV Public Việt Nam", bin:"970439", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/PBVN.png"},
+        {stt:29, code:"HLB", name:"Ngân hàng TNHH MTV Hong Leong Việt Nam", bin:"970442", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/HLB.png"},
+        {stt:30, code:"PGB", name:"Ngân hàng TMCP Xăng dầu Petrolimex", bin:"970430", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/PGB.png"},
+        {stt:31, code:"COB", name:"Ngân hàng Hợp tác xã Việt Nam", bin:"970446", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/COB.png"},
+        {stt:32, code:"CIMB", name:"Ngân hàng TNHH MTV CIMB Việt Nam", bin:"422589", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/CIMB.png"},
+        {stt:33, code:"IVB", name:"Ngân hàng TNHH Indovina", bin:"970434", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/IVB.png"},
+        {stt:34, code:"Vikki", name:"Ngân hàng TNHH MTV Số Vikki", bin:"970406", disburse:true, napas:false, logo:"https://luanoribank.vercel.app/app_v2/img/VIKKI.png"},
+        {stt:35, code:"GPB", name:"Ngân hàng Thương mại TNHH MTV Dầu Khí Toàn Cầu", bin:"970408", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/GPB.png"},
+        {stt:36, code:"NASB", name:"Ngân hàng TMCP Bắc Á", bin:"970409", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/NASB.png"},
+        {stt:37, code:"VAB", name:"Ngân hàng TMCP Việt Á", bin:"970427", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/VAB.png"},
+        {stt:38, code:"SGB", name:"Ngân hàng TMCP Sài Gòn Công Thương", bin:"970400", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/SGB.png"},
+        {stt:39, code:"MSB", name:"Ngân hàng TMCP Hàng Hải", bin:"970426", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/MSB.png"},
+        {stt:40, code:"LPB", name:"Ngân hàng TMCP Lộc Phát Việt Nam", bin:"970449", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/LPB.png"},
+        {stt:41, code:"KLB", name:"Ngân hàng TMCP Kiên Long", bin:"970452", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/KLB.png"},
+        {stt:42, code:"IBKHN", name:"Ngân hàng Công nghiệp Hàn Quốc - Chi nhánh Hà Nội", bin:"970455", disburse:true, napas:false, logo:"https://luanoribank.vercel.app/app_v2/img/IBK.png"},
+        {stt:43, code:"IBKHCM", name:"Ngân hàng Công nghiệp Hàn Quốc - Chi nhánh TP. Hồ Chí Minh", bin:"970456", disburse:true, napas:false, logo:"https://luanoribank.vercel.app/app_v2/img/IBK.png"},
+        {stt:44, code:"WOO", name:"Ngân hàng TNHH MTV Woori Việt Nam", bin:"970457", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/WOORI.png"},
+        {stt:45, code:"SEAB", name:"Ngân hàng TMCP Đông Nam Á", bin:"970440", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/SEAB.png"},
+        {stt:46, code:"UOB", name:"Ngân hàng United Overseas - Chi nhánh TP. Hồ Chí Minh", bin:"970458", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/UOB.png"},
+        {stt:47, code:"OCB", name:"Ngân hàng TMCP Phương Đông", bin:"970448", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/OCB.png"},
+        {stt:48, code:"MAFC", name:"Công ty Tài chính TNHH MTV Mirae Asset (Việt Nam)", bin:"9777777", disburse:false, napas:false, logo:"https://luanoribank.vercel.app/app_v2/img/MIRAE.png"},
+        {stt:49, code:"KEBHANAHCM", name:"Ngân hàng Keb Hana - Chi Nhánh TP Hồ Chí Minh", bin:"970466", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/KEBHANA.png"},
+        {stt:50, code:"KEBHANAHN", name:"Ngân hàng Keb Hana - Chi Nhánh Hà Nội", bin:"970467", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/KEBHANA.png"},
+        {stt:51, code:"STANDARD", name:"Ngân hàng TNHH MTV Standard Chartered Bank Việt Nam", bin:"970410", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/STANDARD.png"},
+        {stt:52, code:"CAKE", name:"TMCP Việt Nam Thịnh Vượng - Ngân hàng số CAKE by VPBank", bin:"546034", disburse:false, napas:false, logo:"https://luanoribank.vercel.app/app_v2/img/CAKE.png"},
+        {stt:53, code:"Ubank", name:"TMCP Việt Nam Thịnh Vượng - Ngân hàng số Ubank by VPBank", bin:"546035", disburse:false, napas:false, logo:"https://luanoribank.vercel.app/app_v2/img/UBANK.png"},
+        {stt:54, code:"NonghyupBankHN", name:"Ngân hàng Nonghyup - Chi nhánh Hà Nội", bin:"801011", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/NONGHYUP.png"},
+        {stt:55, code:"KBHN", name:"Ngân hàng Kookmin - Chi nhánh Hà Nội", bin:"970462", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/KOOKMIN.png"},
+        {stt:56, code:"KBHCM", name:"Ngân hàng Kookmin - Chi nhánh TP. Hồ Chí Minh", bin:"970463", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/KOOKMIN.png"},
+        {stt:57, code:"DBS", name:"DBS Bank Ltd - Chi nhánh Thành phố Hồ Chí Minh", bin:"796500", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/DBS.png"},
+        {stt:58, code:"CBB", name:"Ngân hàng Thương mại TNHH MTV Xây dựng Việt Nam", bin:"970444", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/CBB.png"},
+        {stt:59, code:"KBankHCM", name:"Ngân hàng Đại chúng TNHH Kasikornbank", bin:"668888", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/KBANK.png"},
+        {stt:60, code:"HSBC", name:"Ngân hàng TNHH MTV HSBC (Việt Nam)", bin:"458761", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/HSBC.png"},
+        {stt:61, code:"TIMO", name:"Ngân hàng số Timo by Bản Việt Bank", bin:"", disburse:false, napas:false, logo:"https://luanoribank.vercel.app/app_v2/img/TIMO.png"},
+        {stt:62, code:"CITI", name:"Ngân hàng Citi", bin:"533948", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/CITI.png"},
+        {stt:63, code:"VNPTMONEY", name:"VNPT Money", bin:"971011", disburse:false, napas:false, logo:"https://luanoribank.vercel.app/app_v2/img/VNPTMONEY.png"},
+        {stt:64, code:"VTLMONEY", name:"Viettel Money", bin:"971005", disburse:false, napas:false, logo:"https://luanoribank.vercel.app/app_v2/img/VIETTELMONEY.png"},
+        {stt:65, code:"VBSP", name:"Ngân Hàng Chính Sách Xã Hội", bin:"999888", disburse:false, napas:false, logo:"https://luanoribank.vercel.app/app_v2/img/VBSP.png"},
+        {stt:66, code:"PVcomBankPay", name:"PVcomBank Pay", bin:"971133", disburse:false, napas:false, logo:"https://luanoribank.vercel.app/app_v2/img/PVCOMBANK.png"},
+        {stt:67, code:"BNPPARIBASHN", name:"Ngân hàng BNP Paribas - CN Hà Nội", bin:"963668", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/BNPPARIBAS.png"},
+        {stt:68, code:"BNPPARIBASHCM", name:"Ngân hàng BNP Paribas - CN TP.HCM", bin:"963666", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/BNPPARIBAS.png"},
+        {stt:69, code:"CUBHCM", name:"Ngân hàng Cathay United - CN TP.HCM", bin:"168999", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/CATHAY.png"},
+        {stt:70, code:"BIDC", name:"Đầu tư và Phát triển Campuchia – Chi nhánh Hà Nội", bin:"555666", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/BIDC.png"},
+        {stt:71, code:"SVFC", name:"Công ty Tài chính TNHH MTV Shinhan Việt Nam", bin:"963368", disburse:false, napas:false, logo:"https://luanoribank.vercel.app/app_v2/img/SHINHAN.png"},
+        {stt:72, code:"BOCHK", name:"Bank of China (HK) - HCM", bin:"963688", disburse:true, napas:true, logo:"https://luanoribank.vercel.app/app_v2/img/BANKOFCHINA.png"},
+        {stt:73, code:"VikkiHDBANK", name:"Vikki by HDBank", bin:"963311", disburse:false, napas:false, logo:"https://luanoribank.vercel.app/app_v2/img/VIKKI.png"},
+        {stt:74, code:"Umee", name:"UMEE by Kienlongbank", bin:"963399", disburse:false, napas:false, logo:"https://luanoribank.vercel.app/app_v2/img/UMEE.png"},
+        {stt:75, code:"Liobank", name:"Liobank by OCB", bin:"963369", disburse:false, napas:false, logo:"https://luanoribank.vercel.app/app_v2/img/LIOBANK.png"},
+        {stt:76, code:"MVAS", name:"Trung tâm Dịch vụ số Mobifone – CN Tổng Công ty viễn thông Mobifone", bin:"971032", disburse:false, napas:false, logo:"https://luanoribank.vercel.app/app_v2/img/MOBIFONE.png"}
+    ];
+
+    // Đổ dữ liệu vào bảng
+    const tbody = document.getElementById('bankTableBody');
+    
+    banks.forEach(bank => {
+        const row = tbody.insertRow();
+        
+        // STT
+        row.insertCell(0).innerText = bank.stt;
+        
+        // Logo
+        const logoCell = row.insertCell(1);
+        const img = document.createElement('img');
+        img.src = bank.logo;
+        img.alt = bank.code;
+        img.className = 'bank-logo';
+        img.onerror = function() {
+            this.src = 'https://luanoribank.vercel.app/app_v2/img/default.png';
+        };
+        logoCell.appendChild(img);
+        
+        // Bank Code
+        row.insertCell(2).innerHTML = `<span class="bank-code">${bank.code}</span>`;
+        
+        // Bank Name
+        row.insertCell(3).innerText = bank.name;
+        
+        // Bin Card
+        row.insertCell(4).innerHTML = bank.bin ? `<span class="bin-card">${bank.bin}</span>` : '<span style="color:#999;">—</span>';
+        
+        // Disburse
+        row.insertCell(5).innerHTML = bank.disburse ? '<span class="badge-yes">✓ Có</span>' : '<span class="badge-no">✗ Không</span>';
+        
+        // Domestic ATM (Napas)
+        row.insertCell(6).innerHTML = bank.napas ? '<span class="badge-yes">✓ Có</span>' : '<span class="badge-no">✗ Không</span>';
+    });
+</script>
+</body>
+</html>
