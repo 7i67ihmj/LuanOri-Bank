@@ -101,16 +101,9 @@ def fetch_from_original_api(bin_code, stk):
         print(f"Error: {e}")
         return None
 
-@app.route('/', defaults={'path': ''}, methods=['GET', 'OPTIONS'])
-@app.route('/<path:path>', methods=['GET', 'OPTIONS'])
-def catch_all(path):
-    if request.method == 'OPTIONS':
-        response = jsonify({})
-        response.headers['Access-Control-Allow-Origin'] = '*'
-        response.headers['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
-        response.headers['Access-Control-Allow-Headers'] = '*'
-        return response
-    
+@app.route('/', methods=['GET'])
+@app.route('/api', methods=['GET'])
+def index():
     bank = request.args.get('bank')
     stk = request.args.get('stk')
     
@@ -146,5 +139,14 @@ def catch_all(path):
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
 
-if __name__ == "__main__":
-    app.run(port=8080)
+@app.errorhandler(404)
+def not_found(e):
+    return jsonify({
+        "code": 404,
+        "success": False,
+        "msg": "Not found",
+        "credits": CREDIT_TEXT,
+        "credits_url": CREDIT_URL
+    })
+
+handler = app
