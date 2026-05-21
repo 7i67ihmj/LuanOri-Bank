@@ -126,27 +126,15 @@ def index():
         result["data"] = data
         result["credits"] = CREDIT_TEXT
         result["credits_url"] = CREDIT_URL
+        return jsonify(result)
     else:
-        result = {
+        return jsonify({
             "code": 404,
             "success": False,
             "msg": "Account not found",
             "credits": CREDIT_TEXT,
             "credits_url": CREDIT_URL
-        }
-    
-    response = jsonify(result)
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    return response
+        })
 
-@app.errorhandler(404)
-def not_found(e):
-    return jsonify({
-        "code": 404,
-        "success": False,
-        "msg": "Not found",
-        "credits": CREDIT_TEXT,
-        "credits_url": CREDIT_URL
-    })
-
+# Vercel serverless entry point
 handler = app
